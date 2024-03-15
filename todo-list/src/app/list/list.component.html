@@ -1,0 +1,15 @@
+<div class="flex space-x-2">
+    <div class="p-2">
+        <input class="mt-1 size-4" type="checkbox" [(ngModel)]="this.isComplete" />
+    </div>
+    <div (pointerleave)="onPointerLeave()">
+        <div *ngIf="!isEditable" class="p-2" (pointerenter)="onPointerEnter()">
+            <span *ngIf="!isComplete">{{text}}</span><del *ngIf="isComplete">{{text}}</del>
+        </div>
+        <div *ngIf="isEditable" class="space-x-2">
+            <input class="p-2 border border-emerald-300 bg-emerald-600 text-white font-bold hover:rounded" [(ngModel)]="this.tempText" />
+            <button class="p-2 border border-emerald-300 bg-emerald-600 rounded text-white font-bold" (click)="onUpdateBtnClick()">Update</button>
+            <button class="p-2 border border-orange-300 bg-orange-600 rounded text-white font-bold" (click)="onDeleteBtnClick()">Delete</button>
+        </div>
+    </div>
+</div>
