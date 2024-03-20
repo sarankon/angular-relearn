@@ -1,0 +1,42 @@
+<div>Form Example</div>
+
+<hr/>
+<div>
+    <div>Class</div>
+    <div>ng-dirty: เมื่อมีการเปลี่ยนเปลงค่า</div>
+    <div>ng-valid and ng-invalid: เมื่อค่าเป็น valid และ invalid</div>
+</div>
+<div>
+    <div>Standart Case</div>
+    <div>Use Tag Form and Submit</div>
+    <form [formGroup]="formStandard">
+        <div>Username: {{this.formStandard.controls['username'].value}}</div>
+        <div>Password: {{this.formStandard.controls['password'].value}}</div>
+        <div>
+            <label for="username" [ngClass]="{'ng-dirty': true}">Username: </label>
+            <input type="text" id="username" formControlName="username" [ngClass]="{'ng-dirty': true}"/>
+            <div *ngIf="this.formStandard.controls['username'].invalid">Invalid</div>
+        </div>
+        <div>
+            <label for="password">Password: </label>
+            <input type="text" id="password" formControlName="password" 
+                [ngClass]="{'ng-invalid ng-dirty': isSubmitted && this.formStandard.invalid}"/>
+        </div>
+        <div>
+            <label for="none">None: </label>
+            <input type="text" id="none" formControlName="none"/> 
+        </div>
+        <div>
+            <label for="manual">Manual: </label>
+            <input type="text" id="manual" formControlName="manual"/>
+        </div>
+        <div>
+            <div>on [formGroup] will override button type submit</div>
+            <button type="submit">Submit</button>
+            <button (click)="onClickFormStandard()" >Get Value</button>
+            <button (click)="onClickManual()" > Dirty </button>
+            <button (click)="changeSubmit()" > Change Submit </button>
+        </div>
+    </form>
+</div>
+
